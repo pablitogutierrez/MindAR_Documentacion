@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image-aframe.prod.js"></script>
+</head>
+<body>
+    <!-- 
+        <a-scene> Es la escena donde vamos a trabajar, el mindar-image vendria siendo la o las imagenes a las cuales tiene que enfocar para podes mostrar algo,
+        vr-mode-ui es la interfaz de usuario para el modo VR y por ultimo device-orientation-ui es la interfaz de usuario para solicitar permisos de orientacion
+        del dispositivo. Estan desactivadas y si son necesarios o queres probar podes activarlas. 
+    -->
+    <a-scene mindar-image="imageTargetSrc: ./targets.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+        <!-- Estos son los assets, aqui se ponen los archivos precargados para que luego utilizarlos dentro de las entitys. -->
+        <a-assets>
+            <img id="angel" src="angel.png">
+            <img id="diablo" src="diablo.png">
+        </a-assets>
+
+        <!-- Esta es la camara, podemos modificarla segun para lo que la necesitemos. -->
+        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+        <!-- 
+            Y aca tenemos una entity donde tiene un mindar-image-target, que vendria siendo la imagen
+            en el archivo targets.mind a la cual se quiere enfocar para mostrar algo.
+        -->
+        <a-entity mindar-image-target="targetIndex: 0">
+            <a-image src="#diablo" position="0 0 0" height="1" width="1" rotation="0 0 0"></a-image>
+        </a-entity>
+        <a-entity mindar-image-target="targetIndex: 1">
+            <a-image src="#angel" position="0 0 0" height="1" width="1" rotation="0 0 0"></a-image>
+        </a-entity>
+    </a-scene>
+</body>
+</html>
